@@ -15,21 +15,21 @@ class PostController extends Controller
     }
 
     public function store()
+{
+    if(auth()->user())
     {
-        if(auth()->user())
-        {
-            $user_id = auth()->user()->id;
-        }
-
-        Post::create([
-            'title' => request('title'),
-            'preview' => request('preview'),
-            'body' => request('body'),
-            'user_id' => $user_id
-        ]);
-        //dd(request()->all());
-        return redirect('/');
+        $user_id = auth()->user()->id;
     }
+
+    Post::create([
+        'title' => request('title'),
+        'preview' => request('preview'),
+        'body' => request('body'),
+        'user_id' => $user_id
+    ]);
+    //dd(request()->all());
+    return redirect('/');
+}
 
     public function users_posts(Request $request)
     {

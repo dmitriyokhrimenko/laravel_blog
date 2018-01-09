@@ -16,6 +16,11 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
+    <link href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <link href="{{ asset('/summernote/summernote.css') }}" rel="stylesheet">
+
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -46,6 +51,18 @@
 
     @include('layouts.footer')
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('/summernote/summernote.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function() {
+
+            $('#summernote').summernote();
+
+        });
+
+    </script>
+
 </body>
 
 </html>

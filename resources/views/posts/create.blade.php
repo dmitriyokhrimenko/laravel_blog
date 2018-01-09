@@ -14,9 +14,9 @@
             </div>
             <div class="form-group">
                 <label for="body">Body</label>
-                <textarea class="form-control" id="body" name="body"></textarea>
+                <textarea id="summernote" class="form-control"></textarea>
             </div>
-            <input type="hidden" class="form-control" id="user_id" name="user_id">
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
