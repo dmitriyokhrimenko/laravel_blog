@@ -8,23 +8,23 @@ use App\Post;
 
 class CommentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $comments = Comment::where('post_id', request()->id)->get();
+        $comments = Comment::where('post_id', $request->id)->get();
         return view('posts.single', compact('comments'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         //dd(\request());
-        if(request()->user())
+        if($request->user())
         {
-            $user_id = request()->user()->id;
-            $post_id = Post::find(request()->id)->id;
+            $user_id = $request->user()->id;
+            $post_id = Post::find($request->id)->id;
         }
         //dd($post_id);
         Comment::create([
-            'body' => request('body'),
+            'body' => $request->body,
             'user_id' => $user_id,
             'post_id' => $post_id
         ]);

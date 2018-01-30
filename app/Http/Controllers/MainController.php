@@ -6,9 +6,9 @@ use App\Post;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->sort == 'desc')
+        if ($request->sort == 'desc')
         {
             $posts = Post::orderby('created_at', 'desc')->paginate(5);
             $posts->appends(['sort' => 'desc'])->links();
@@ -16,14 +16,14 @@ class MainController extends Controller
         else
             $posts = Post::paginate(5);
 
-            if (request()->user()) {
-                $user = request()->user()->name;
-                $url = route('userposts', ['id' => request()->user()->id]);
+            if ($request->user()) {
+                $user = $request->user()->name;
+                $url = route('userposts', ['id' => $request->user()->id]);
             } else {
                 $user = 'Not register';
                 $url = '/';
             }
 
-        return view('posts.index')->with(['user' => $user, 'url' => $url, 'posts' => $posts]);
+        return view('home')->with(['user' => $user, 'url' => $url, 'posts' => $posts]);
     }
 }

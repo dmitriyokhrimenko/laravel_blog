@@ -25,7 +25,7 @@
                     @foreach($comments as $comment)
                         <li>
                             <div class="commenterImage">
-                                <img src="http://placekitten.com/50/50" />
+                                <img src="{{asset('images/no-person.png')}}" />
                             </div>
                             <div class="commentText">
                                 <p class="">{{$comment->body}}</p> <span class="date sub-text">on {{$comment->created_at->diffForHumans()}}

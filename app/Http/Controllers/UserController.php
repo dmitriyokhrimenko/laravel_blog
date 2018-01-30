@@ -17,9 +17,9 @@ class UserController extends Controller
         $this->repo = $repository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::find(request()->id);
+        $user = User::find($request->id);
         return view('users.index', compact('user'));
     }
 

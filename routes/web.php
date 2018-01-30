@@ -30,7 +30,7 @@ Route::get('/post/{id}', 'CommentController@index');
 
 Route::get('/user/{id}', 'UserController@index');
 
-Route::get('/user/profile/{id}', 'UserController@profile');
+Route::get('/user/profile/{id}', 'UserController@profile')->name('profile');
 
 Route::get('/admin/posts', 'AdminController@posts');
 
