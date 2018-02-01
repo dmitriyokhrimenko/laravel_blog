@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\User;
 use \App\Post;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -16,16 +17,16 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        if(auth()->user())
-        {
-            $user_id = auth()->user()->id;
-        }
-
+        $user_id = auth()->user()->id;
+        $filename = $request->file('thumbnail')->getClientOriginalName();
+        $request->file('thumbnail')->move(public_path() . '/images/thumbnails', $request->file('thumbnail')->getClientOriginalName());
+        
         Post::create([
             'title' => $request->title,
             'preview' => $request->preview,
             'body' => $request->body,
-            'user_id' => $user_id
+            'thumbnail' => $filename,
+            'user_id' => $user_id,
         ]);
         return redirect('/');
     }
@@ -40,6 +41,7 @@ class PostController extends Controller
     public function single_post(Request $request)
     {
         $post = Post::find($request->id);
-        return view('posts.single', compact('post'));
+        $comments = $post->comments;
+        return view('posts.single', compact(['post', 'comments']));
     }
 }

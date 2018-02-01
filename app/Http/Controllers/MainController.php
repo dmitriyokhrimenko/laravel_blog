@@ -10,11 +10,11 @@ class MainController extends Controller
     {
         if ($request->sort == 'desc')
         {
-            $posts = Post::orderby('created_at', 'desc')->paginate(5);
+            $posts = Post::orderby('created_at', 'desc')->paginate(12);
             $posts->appends(['sort' => 'desc'])->links();
         }
         else
-            $posts = Post::paginate(5);
+            $posts = Post::paginate(12);
 
             if ($request->user()) {
                 $user = $request->user()->name;

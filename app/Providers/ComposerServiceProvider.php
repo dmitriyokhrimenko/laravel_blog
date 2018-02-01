@@ -14,14 +14,14 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(
-            '*',
-            'App\Http\ViewComposers\ProfileComposer'
-        );
-        view()->composer(
-            '*',
-            'App\Http\ViewComposers\PostComposer'
-        );
+//        view()->composer(
+//            '*',
+//            'App\Http\ViewComposers\ProfileComposer'
+//        );
+//        view()->composer(
+//            '*',
+//            'App\Http\ViewComposers\PostComposer'
+//        );
     }
 
     /**

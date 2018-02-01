@@ -6,6 +6,7 @@ namespace App\Http\Repository;
  */
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileRepository
 {
@@ -16,6 +17,9 @@ class ProfileRepository
      */
     public function getData()
     {
-        return User::find(request()->id);
+        if(Auth::check()){
+            return User::find(Auth::user()->id);
+        }
+        return '';
     }
 }

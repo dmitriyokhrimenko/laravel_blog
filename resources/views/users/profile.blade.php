@@ -1,25 +1,34 @@
-@extends('layouts.main')
+@extends('layouts.profile')
 
 @section('content')
 
-    <div class="col-sm-8 blog-main">
+    <div class="col-sm-12 blog-main">
 
         @if (Auth::check())
+            @if ($posts->count() > 0)
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            <div class="blog-post">
-                {{$user->name}}
-            </div><!-- /.blog-post -->
-
-            @if ($post)
-
-                <p>Ваши <a href="/posts/user/{{$user->id}}">записи</a></p>
+                    @foreach($posts as $post)
+                        <tr>
+                            <th scope="row">{{$post->id}}</th>
+                            <td>{{$post->title}}</td>
+                            <td>--</td>
+                            <td>{{$post->created_at}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             @endif
         @endif
-
-        <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
-        </nav>
     </div><!-- /.blog-main -->
 
 @endsection

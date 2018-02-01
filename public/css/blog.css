@@ -31,6 +31,11 @@ h6, .h6 {
  * Override Bootstrap's default container.
  */
 
+.main
+{
+    margin-bottom: 2rem;
+}
+
 .container {
     max-width: 60rem;
 }
@@ -43,6 +48,13 @@ h6, .h6 {
 .blog-masthead {
     background-color: #ffffff;
     max-height: 100px;
+}
+
+.blog-main
+{
+    background-color: #f5f8fa;
+    padding: 1.5rem;
+    border-radius: 20px;
 }
 
 /* Nav links */
@@ -139,8 +151,6 @@ h6, .h6 {
 .single {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
 }
 .single h2 {
     margin-bottom: .25rem;
@@ -206,12 +216,6 @@ h6, .h6 {
 .commentBox {
     padding:10px;
     border-top:1px dotted #bbb;
-}
-.commentBox .form-group:first-child, .actionBox .form-group:first-child {
-    width:80%;
-}
-.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-    width:18%;
 }
 .actionBox .form-group * {
     width:100%;
@@ -284,10 +288,33 @@ h6, .h6 {
 }
 .user-name
 {
-    text-align: center;
+    padding-left: 1rem !important;
 }
 .logout a
 {
     padding-top: 0 !important;
-    padding-left: 2rem !important;
+    padding-left: 1rem !important;
+}
+
+.article-card
+{
+    margin: 10px 0; 
+}
+
+.blog-header-logo
+{
+    width: 100%;
+}
+
+.logout p
+{
+    margin: 0;
+}
+.card img
+{
+    height: 300px;
+}
+.thumb
+{
+    max-width: 200px;
 }

@@ -23,6 +23,6 @@ class PostComposer
 
     public function compose(View $view)
     {
-        $view->with('post', $this->posts);
+        //$view->with('post', $this->posts);
     }
 }

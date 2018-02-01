@@ -11,6 +11,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Http\Controllers\PostController;
 use App\Http\Repository\ProfileRepository;
+use Illuminate\Http\Request;
 
 
 class ProfileComposer
@@ -24,6 +25,6 @@ class ProfileComposer
 
     public function compose(View $view)
     {
-        $view->with('user', $this->posts);
+        //$view->with('user', $this->posts);
     }
 }

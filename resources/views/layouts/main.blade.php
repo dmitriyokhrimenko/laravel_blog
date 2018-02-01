@@ -17,6 +17,11 @@
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
     <link href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    @if(Route::currentRouteName() == 'postCreate')
+        <script src='{{asset('/js/tinymce/js/tinymce/tinymce.min.js')}}'></script>
+        <script src='{{asset('/js/tinymce-config.js')}}'></script>
+    @endif
+
 
 </head>
 
@@ -24,18 +29,19 @@
     @include('layouts.nav')
 
     @include('layouts.header')
+    <section class="main">
+        <div class="container">
 
-    <div class="container">
+         <div class="row">
 
-        <div class="row">
-
-            @yield('content')
-
-            @include('layouts.sidebar')
-
-        </div><!-- /.row -->
-
-    </div><!-- /.container -->
+                @yield('content')
+                
+                @include('layouts.sidebar')
+                
+            </div><!-- /.row -->
+            
+        </div><!-- /.container -->
+    </section>
 
     @include('layouts.footer')
     <script src="{{ asset('js/app.js') }}"></script>
