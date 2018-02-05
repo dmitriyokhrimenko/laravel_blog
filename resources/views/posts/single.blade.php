@@ -9,7 +9,7 @@
             
                 <div class="row">
                     <div class="col-md-4">
-                      Author: <a href="{{route('user', ['id' => $post->user_id])}}"><i>{{$post->user->name}}</i></a>
+                      Author: <a href="{{route('user', ['id' => $post->user_id])}}"><i>{{$post->user->name}} {{$post->user->surname}}</i></a>
                     </div>
                     <div class="col-md-4 ml-auto">
                       <p class="text-right"><i>{{$post->created_at->format('Y-m-d')}}</i></p>
@@ -36,14 +36,14 @@
                                 <img src="{{asset('images/no-person.png')}}" />
                             </div>
                             <div class="commentText">
-                                <p class="">{{$comment->body}}</p> <span class="date sub-text">on {{$comment->created_at->diffForHumans()}}
-                                     by <a href="{{route('user', ['id' => $comment->user->id])}}">{{$comment->user->name}}</a></span>
+                                <p id="comment-{{$comment->id}}">{{$comment->body}}</p> <span class="date sub-text">on {{$comment->created_at->diffForHumans()}}
+                                     by <a href="{{route('user', ['id' => $comment->user->id])}}">{{$comment->user->name}} {{$comment->user->surname}}</a></span>
                             </div>
                         </li>
                     @endforeach
                 </ul>
                 @if(Auth::check())
-                    <form role="form" method = "POST" action="/post/{{$post->id}}">
+                    <form role="form" method = "POST" action="{{route('create.comment', ['post_id' => $post->id])}}">
                         {{csrf_field()}}
                         <div class="form-group">
                             <textarea class="form-control" type="text" placeholder="Your comments" name="body" /></textarea>

@@ -15,7 +15,11 @@
             <ul class="nav justify-content-end account-info">
                 @if (Auth::check())
                     <div class="account-info">
-                        <img src="{{asset('images/no-person.png')}}" />
+                        @if(isset(Auth::user()->photo))
+                            <a class="nav-link" href="{{route('profile')}}"><img src="{{asset('images/profilePhoto/' . Auth::user()->photo)}}" /></a>
+                        @else
+                            <a class="nav-link" href="{{route('profile')}}"><img src="{{asset('images/no-person.png')}}" /></a>
+                        @endif
                     </div>
                     <li class="logout">
                         <p class="user-name">{{Auth::user()->name}}</p>

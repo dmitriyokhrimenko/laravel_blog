@@ -12,12 +12,13 @@
     </title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/css//bootstrap/css/bootstrap.min.css')}}">
     <link href="{{ asset('css/forblog.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
     <link href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    @if(Route::currentRouteName() == 'postCreate')
+    <script src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    @if(Route::currentRouteName() == 'post.create' || Route::currentRouteName() == 'edit.post')
         <script src='{{asset('/js/tinymce/js/tinymce/tinymce.min.js')}}'></script>
         <script src='{{asset('/js/tinymce-config.js')}}'></script>
     @endif
@@ -26,24 +27,36 @@
 </head>
 
 <body>
-    @include('layouts.nav')
-
-    <section class="main">
-        <div class="container">
-            <div class="row">
-
-                    @yield('content')
-
+    @include('layouts.parts.nav')
+    
+    @if(Request::route()->getPrefix() == '/profile')
+        @include('layouts.parts.additionalNav')
+        <section class="main clear profile">
+    @else
+        <section class="main clear">
+    @endif 
+    
+    
+            <div class="container">
+                <div class="row">
+    
+                        @yield('content')
+    
             </div><!-- /.row -->
-        </div><!-- /.container -->
-    </section>
+            </div><!-- /.container -->
+        </section>
 
-    @include('layouts.footer')
+    @include('layouts.parts.footer')
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    @if(Route::currentRouteName() == 'post.create' || Route::currentRouteName() == 'edit.profile' || Route::currentRouteName() == 'edit.post')
+        <script src='{{asset('/js/preload-img.js')}}'></script>
+    @endif
+    @if(Route::currentRouteName() == 'edit.post')
+        <script src='{{asset('/js/load-post-content.js')}}'></script>
+    @endif
 </body>
 
 </html>
