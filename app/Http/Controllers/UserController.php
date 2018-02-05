@@ -29,10 +29,76 @@ class UserController extends Controller
         return view('users.index', compact('user'));
     }
 
-    public function profile()
+    public function profile(Request $request)
+    {
+        $user = Auth::user();
+        return view('users.profile', compact(['user']));
+    }
+    
+    public function delete()
+    {
+        $user = User::find(Auth::user()->id);
+        Auth::logout();
+        $user->delete();
+        return redirect()->home();
+    }
+    
+    public function edit()
+    {
+
+        $user = Auth::user();
+        return view('users.editProfile', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        if(isset($request->photo)){
+            $userPhoto = $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path() . '/images/profilePhoto', $request->file('photo')->getClientOriginalName());
+            $user_data = 
+            [
+                "photo" => $userPhoto,
+                "name" => $request->name,
+                "surname" => $request->surname,
+                "nickname" => $request->nackname,
+                "city" => $request->city,
+                "country" => $request->country,
+                "age" => $request->age,
+                "email" => $request->email,
+                "telephone" => $request->telephone,
+            ];
+        }
+        else{
+
+            $user_data = 
+            [
+                "name" => $request->name,
+                "surname" => $request->surname,
+                "nickname" => $request->nackname,
+                "city" => $request->city,
+                "country" => $request->country,
+                "age" => $request->age,
+                "email" => $request->email,
+                "telephone" => $request->telephone,
+            ];
+        }
+        
+        $user = User::find(Auth::user()->id);
+        $user->update($user_data);
+        return redirect()->route('profile');
+    }
+
+    public function userPosts() 
     {
         $user = $this->repo->getData();
         $posts = $user->posts;
-        return view('users.profile', compact(['user', 'posts']));
+        return view('users.userPosts', compact(['user', 'posts']));
+    }
+    
+    public function userComments() 
+    {
+        $user = $this->repo->getData();
+        $comments = $user->comments;
+        return view('users.userComments', compact(['comments']));
     }
 }
