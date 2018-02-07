@@ -41,7 +41,7 @@
                                         <span></span>
                                     </button>
                                 </form>
-                                <!--Edit profile-->
+                                <!--Edit post-->
                                 <a class="btn btn-round edit-post" href="{{route('edit.post', 
                                 ['id' => $post->id])}}" role="button"><span></span>
                                 </a>

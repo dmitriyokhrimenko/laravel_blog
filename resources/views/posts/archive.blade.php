@@ -5,7 +5,7 @@
     <div class="col-sm-9 blog-main">
         <div class="row">
             @foreach($posts as $post)
-            
+
                 @if($post->status == 'published')
                     <div class="col-sm-6 article-card">
                         <div class="card">

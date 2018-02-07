@@ -7,13 +7,27 @@ use \App\User;
 use \App\Post;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
 
+    public function index(Request $request)
+    {
+        if ($request->sort == 'desc')
+        {
+            $posts = Post::orderby('created_at', 'desc')->paginate(6);
+            $posts->appends(['sort' => 'desc'])->links();
+        }
+        else
+            $posts = Post::paginate(6);
+
+        return view('home', compact('posts'));
+    }
+
     public function create()
     {
-        dd($_SERVER['DOCUMENT_ROOT']);
         return view('posts.create');
     }
 
@@ -26,13 +40,13 @@ class PostController extends Controller
         elseif (isset($request->save)) {
             $status = 'no-published';
         }
-        
+
         if($request->file('thumbnail')){
             $thumbnail = $request->file('thumbnail')->getClientOriginalName();
             $request->file('thumbnail')->move(public_path() . '/images/thumbnails', $request->file('thumbnail')->getClientOriginalName());
         }
         else $thumbnail = '';
-                
+
         Post::create([
             'title' => $request->title,
             'preview' => $request->preview,
@@ -43,10 +57,13 @@ class PostController extends Controller
         ]);
         return redirect('/');
     }
-    
+
     public function delete(Request $request)
     {
         $post = Post::find($request->id);
+
+        File::deleteDirectory(public_path('/postImages/' . $post->id));
+
         $post->delete();
         return redirect()->back();
     }
@@ -61,8 +78,8 @@ class PostController extends Controller
     {
         if(isset($request->thumbnail)){
             $thumbnail = $request->file('thumbnail')->getClientOriginalName();
-            $request->file('thumbnail')->move(public_path() . '/images/profilePhoto', $request->file('thumbnail')->getClientOriginalName());
-            $post_data = 
+            $request->file('thumbnail')->move(public_path() . '/images/thumbnails', $request->file('thumbnail')->getClientOriginalName());
+            $post_data =
             [
                 'title' => $request->title,
                 'preview' => $request->preview,
@@ -70,7 +87,7 @@ class PostController extends Controller
                 'thumbnail' => $thumbnail,
             ];
         }else{
-            $post_data = 
+            $post_data =
             [
                 'title' => $request->title,
                 'preview' => $request->preview,
@@ -95,7 +112,7 @@ class PostController extends Controller
         $comments = $post->comments;
         return view('posts.single', compact(['post', 'comments']));
     }
-    
+
     public function changeStatus(Request $request)
     {
         $post = Post::where('id', $request->id)->first();
@@ -109,5 +126,13 @@ class PostController extends Controller
         $post->update(['status' => $status]);
         return redirect()->back();
     }
-   
+
+    public function archive(Request $request)
+    {
+        $posts = Post::where('status', 'published')
+        ->whereYear('created_at', $request->year)
+        ->whereMonth('created_at', Carbon::parse($request->month)->month)
+        ->paginate(6);
+        return view('posts.archive', compact('posts'));
+    }
 }

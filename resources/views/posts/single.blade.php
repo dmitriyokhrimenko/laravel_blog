@@ -33,7 +33,11 @@
                     @foreach($comments as $comment)
                         <li>
                             <div class="commenterImage">
-                                <img src="{{asset('images/no-person.png')}}" />
+                                @if(isset($comment->user->photo) && file_exists(public_path('/images/profilePhoto/' . $comment->user->photo)))
+                                    <img src="{{asset('images/profilePhoto/' . $comment->user->photo)}}" />
+                                @else
+                                    <img src="{{asset('images/app/no-person.png')}}" />
+                                @endif
                             </div>
                             <div class="commentText">
                                 <p id="comment-{{$comment->id}}">{{$comment->body}}</p> <span class="date sub-text">on {{$comment->created_at->diffForHumans()}}

@@ -11,10 +11,10 @@
                 <div class="row">
                     <div class="col-4 profile-photo">
                             <span id="output">
-                                @if(!empty($user->photo))
+                                @if(!empty($user->photo) && file_exists(public_path('/images/profilePhoto/' . $user->photo)))
                                     <img src="{{asset('/images/profilePhoto/' . $user->photo)}}">
                                 @else
-                                    <img src="{{asset('/images/no-person.png')}}" alt="" class="">
+                                    <img src="{{asset('/images/app/no-person.png')}}" alt="" class="">
                                 @endif
                             </span>
                         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />

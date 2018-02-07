@@ -237,8 +237,6 @@ h6, .h6 {
 .commentList {
     padding:0;
     list-style:none;
-    max-height:200px;
-    overflow:auto;
 }
 .commentList li {
     margin:0;
@@ -254,7 +252,8 @@ h6, .h6 {
     float:left;
 }
 .commenterImage img {
-    width:100%;
+    width: 30px;
+    height: 30px;
     border-radius:50%;
 }
 .commentText p {
@@ -310,7 +309,7 @@ h6, .h6 {
 
 .article-card
 {
-    margin: 10px 0; 
+    margin: 10px 0;
 }
 
 .blog-header-logo
@@ -347,13 +346,13 @@ h6, .h6 {
 
 .published
 {
-    background-image: url('/public/images/icons/published.png');
+    background-image: url('/public/images/app/icons/published.png');
     border: none;
 }
 
 .no-published
 {
-    background-image: url('/public/images/icons/no-published.png');
+    background-image: url('/public/images/app/icons/no-published.png');
     border: none;
 }
 
@@ -365,18 +364,18 @@ h6, .h6 {
 
 .edit-profile span:before
 {
-    content: url('/public/images/icons/edit.png');
+    content: url('/public/images/app/icons/edit.png');
 }
-.edit-post span:before
+.edit-post span:before, .edit-comment span:before
 {
-    content: url('/public/images/icons/edit-post.png');
+    content: url('/public/images/app/icons/edit-post.png');
 }
-.edit-post
+.edit-post, .edit-comment
 {
     padding: 0;
     margin-left: 5px;
 }
-.action-delete-post
+.action-delete-post, .action-delete-comment
 {
     float: left;
     margin-right: 5px;
@@ -409,5 +408,11 @@ h6, .h6 {
 .delete-comment, .delete-post
 {
     border: none;
-    background-image: url('/public/images/icons/delete.png');
+    background-image: url('/public/images/app/icons/delete.png');
+}
+
+.lang a
+{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
 }

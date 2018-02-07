@@ -24,13 +24,18 @@
                             <td><a href="{{route('single.post', ['id' => $comment->post_id])}}">{{$comment->post->title}}</a></td>
                             <td>{{$comment->created_at}}</td>
                             <td>
-                                <form method="post" action="{{route('delete.comment', ['id' => $comment->id])}}">
+                                <form method="post" action="{{route('delete.comment', ['id' => $comment->id])}}" class="action-delete-comment">
                                     {{ csrf_field() }}
                                     {{method_field('DELETE')}}
                                     <button type="submit" class="delete-comment btn btn-round">
                                         <span></span>
                                     </button>
                                 </form>
+
+                                <!--Edit comment-->
+                                <a class="btn btn-round edit-comment" href="{{route('edit.comment', 
+                                ['id' => $comment->id])}}" role="button"><span></span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

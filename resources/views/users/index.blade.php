@@ -5,10 +5,10 @@
     <div class="col-sm-9 blog-main">
                 <div class="row user-data">
                     <div class="col-sm-4 profile-photo">
-                        @if(!empty($user->photo))
-                            <img src="{{asset('/images/profilePhoto/' . $user->photo)}}" alt="" class="">
+                        @if(!empty($user->photo) && file_exists(public_path('/images/profilePhoto/' . $user->photo)))
+                            <img src="{{asset('/images/profilePhoto/' . $user->photo)}}">
                         @else
-                            <img src="{{asset('/images/no-person.png')}}" alt="" class="">
+                            <img src="{{asset('/images/app/no-person.png')}}" alt="" class="">
                         @endif
                     </div>
                     <div class="col-sm-8">

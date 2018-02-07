@@ -17,11 +17,26 @@ class CommentController extends Controller
         ]);
         return back();
     }
-    
+
     public function delete(Request $request)
     {
         $comment = Comment::find($request->id);
         $comment->delete();
         return redirect()->back();
+    }
+
+    public function edit(Request $request)
+    {
+        $comment = Comment::find($request->id);
+        return view('comments.edit', compact('comment'));
+    }
+
+    public function update(Request $request)
+    {
+        $comment = Comment::find($request->id);
+        $comment->update([
+            'body' => $request->body,
+        ]);
+        return redirect()->route('user.comments');
     }
 }

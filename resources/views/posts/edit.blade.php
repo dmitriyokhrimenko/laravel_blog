@@ -19,7 +19,11 @@
             <div class="form-group">
                 <div class="col-sm-3 post-thumbnail">
                     <span id="output">
-                        <img class="thumb" src="{{asset('/images/thumbnails/' . $post->thumbnail)}}" />
+                        @if(isset($post->thumbnail) && file_exists(public_path('/images/thumbnails/' . $post->thumbnail)))
+                            <img class="thumb" src="{{asset('/images/thumbnails/' . $post->thumbnail)}}" />
+                        @else
+                            <img class="thumb" src="{{asset('/images/app/no-image.png')}}" alt="no-image">
+                        @endif
                     </span>
                 </div>
                 <div class="clr"></div>
