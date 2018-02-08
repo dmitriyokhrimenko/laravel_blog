@@ -6,11 +6,11 @@
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">@lang('postEdit.Title')</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}">
             </div>
             <div class="form-group">
-                <label for="preview">Preview</label>
+                <label for="preview">@lang('postEdit.Preview')</label>
                 <textarea class="form-control" id="preview" name="preview">{{$post->preview}}</textarea>
             </div>
             <div class="form-group">
@@ -27,11 +27,11 @@
                     </span>
                 </div>
                 <div class="clr"></div>
-                <label for="thumbnail">Post thumbnails</label>
+                <label for="thumbnail">@lang('postEdit.Post thumbnail')</label>
                 <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
                 <input id="thumbnail" name="thumbnail" type="file" />
             </div>
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-success">@lang('postEdit.Update')</button>
         </form>
     </div>
 @endsection

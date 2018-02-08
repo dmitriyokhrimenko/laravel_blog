@@ -20,37 +20,37 @@
                                     </b>
                                 </h2>
                             @endif
-                            
+
                             @if(!empty($user->city))
-                            <b>City</b>
+                            <b>@lang('indexUser.City')</b>
                                 <br/>
                                     <i>{{$user->city}}</i>
                                         <br/>
                             @endif
-                            
+
                             @if(!empty($user->country))
-                            <b>Country</b>
+                            <b>@lang('indexUser.Country')</b>
                                 <br/>
                                     <i>{{$user->country}}</i>
                                         <br/>
                             @endif
-                            
+
                             @if(!empty($user->age))
-                            <b>Age</b>
+                            <b>@lang('indexUser.Age')</b>
                                 <br/>
                                     <i>{{$user->age}}</i>
                                         <br/>
                             @endif
-                   
+
                             @if(!empty($user->email))
-                            <b>E-mail</b>
+                            <b>@lang('indexUser.E-mail')</b>
                                 <br/>
                                     <i>{{$user->email}}</i>
                                         <br/>
                             @endif
-                                        
+
                             @if(!empty($user->telephone))
-                            <b>Telephone</b>
+                            <b>@lang('indexUser.Telephone')</b>
                                 <br/>
                                     <i>{{$user->telephone}}</i>
                                         <br/>
@@ -61,6 +61,3 @@
     </div><!-- /.blog-main -->
 
 @endsection
-
-
-

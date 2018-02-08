@@ -8,12 +8,12 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">@lang('userPosts.Id')</th>
+                        <th scope="col">@lang('userPosts.Title')</th>
+                        <th scope="col">@lang('userPosts.Category')</th>
+                        <th scope="col">@lang('userPosts.Date of creation')</th>
+                        <th scope="col">@lang('userPosts.Status')</th>
+                        <th scope="col">@lang('userPosts.Actions')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@
                                     </button>
                                 </form>
                                 <!--Edit post-->
-                                <a class="btn btn-round edit-post" href="{{route('edit.post', 
+                                <a class="btn btn-round edit-post" href="{{route('edit.post',
                                 ['id' => $post->id])}}" role="button"><span></span>
                                 </a>
                             </td>
@@ -51,7 +51,7 @@
                     </tbody>
                 </table>
             @else
-            <h2 class="text-center">You have not created any posts yet.</h2>
+            <h2 class="text-center">@lang('userPosts.You have not created any posts yet.')</h2>
             @endif
         @endif
     </div><!-- /.blog-main -->

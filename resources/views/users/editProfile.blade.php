@@ -4,7 +4,7 @@
 
     <div class="col-sm-12 blog-main">
         <div class="row user-data">
-            
+
             <form class="edit-user-data" action="{{route('update.profile')}}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 {{method_field('PUT')}}
@@ -22,37 +22,37 @@
                     </div>
                     <div class="col-8">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">@lang('editProfile.Name')</label>
                             <input name="name" type="text" class="form-control" value="{{$user->name}}">
                         </div>
                         <div class="form-group">
-                            <label for="surname">Surname</label>
-                            <input name="surname" type="text" class="form-control" value="{{$user->surname}}" ="Password">
+                            <label for="surname">@lang('editProfile.Surname')</label>
+                            <input name="surname" type="text" class="form-control" value="{{$user->surname}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">City</label>
-                            <input name="city" type="text" class="form-control" value="{{$user->city}}" ="Password">
+                            <label for="exampleInputPassword1">@lang('indexUser.City')</label>
+                            <input name="city" type="text" class="form-control" value="{{$user->city}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Country</label>
-                            <input name="country" type="text" class="form-control" value="{{$user->country}}" ="Enter email">
+                            <label for="exampleInputEmail1">@lang('indexUser.Country')</label>
+                            <input name="country" type="text" class="form-control" value="{{$user->country}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Age</label>
-                            <input name="age" type="text" class="form-control" value="{{$user->age}}" ="Password">
+                            <label for="exampleInputPassword1">@lang('indexUser.Age')</label>
+                            <input name="age" type="text" class="form-control" value="{{$user->age}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">E-mail</label>
-                            <input name="email" type="email" class="form-control" value="{{$user->email}}" email">
+                            <label for="exampleInputEmail1">@lang('indexUser.E-mail')</label>
+                            <input name="email" type="email" class="form-control" value="{{$user->email}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Telephone</label>
-                            <input name="telephone" type="text" class="form-control" value="{{$user->telephone}}" ="Password">
+                            <label for="exampleInputPassword1">@lang('indexUser.Telephone')</label>
+                            <input name="telephone" type="text" class="form-control" value="{{$user->telephone}}">
                         </div>
-                        <button type="submit" class="btn btn-success">Update profile</button>
+                        <button type="submit" class="btn btn-success">@lang('editProfile.Update profile')</button>
                     </div>
-                </div>    
-            </form> 
+                </div>
+            </form>
         </div>
     </div>
 

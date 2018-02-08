@@ -8,11 +8,11 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Comment</th>
-                        <th scope="col">Post</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">@lang('userComments.Id')</th>
+                        <th scope="col">@lang('userComments.Comment')</th>
+                        <th scope="col">@lang('userComments.Post')</th>
+                        <th scope="col">@lang('userComments.Date of creation')</th>
+                        <th scope="col">@lang('userComments.Actions')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,7 @@
                                 </form>
 
                                 <!--Edit comment-->
-                                <a class="btn btn-round edit-comment" href="{{route('edit.comment', 
+                                <a class="btn btn-round edit-comment" href="{{route('edit.comment',
                                 ['id' => $comment->id])}}" role="button"><span></span>
                                 </a>
                             </td>
@@ -42,7 +42,7 @@
                     </tbody>
                 </table>
             @else
-                <h2 class="text-center">You have not yet posted any comments.</h2>
+                <h2 class="text-center">@lang('userComments.You have not yet posted any comments.')</h2>
             @endif
         @endif
     </div><!-- /.blog-main -->

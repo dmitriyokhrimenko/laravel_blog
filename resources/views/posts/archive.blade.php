@@ -1,13 +1,14 @@
-@extends('layouts.main')
+@extends('layouts.clear')
 
 @section('content')
 
-    <div class="col-sm-9 blog-main">
+@if($posts->count() > 0)
+    <div class="col-sm-12 blog-main">
+      <h2 class="text-center">@lang('archive.Archive of posts for') @lang('sidebar.'.request()->month) ({{request()->year}})</h2>
         <div class="row">
             @foreach($posts as $post)
-
                 @if($post->status == 'published')
-                    <div class="col-sm-6 article-card">
+                    <div class="col-sm-4 article-card">
                         <div class="card">
                             @if(isset($post->thumbnail) && file_exists(public_path('/images/thumbnails/' . $post->thumbnail)))
                                 <img class="card-img-top" src="{{asset('/images/thumbnails/' . $post->thumbnail)}}" alt="{{$post->title}}">
@@ -25,10 +26,8 @@
             @endforeach
         </div>
         {{$posts->links()}}
-        <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="/">Older</a>
-            <a class="btn btn-outline-primary" href="?sort=desc">Newer</a>
-        </nav>
     </div><!-- /.blog-main -->
-
+@else
+    <h1 class="text-center post-not-found">@lang('archive.Posts not found')</h1>
+@endif
 @endsection

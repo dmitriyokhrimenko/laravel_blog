@@ -2,18 +2,18 @@
     <div class="container-fluid">
 
         <ul class="nav top-nav">
-            <li><a class="nav-link active" href="/">Home</a></li>
+            <li><a class="nav-link active" href="/">@lang('nav.Home')</a></li>
             @if (Auth::check())
-                    <li><a class="nav-link" href="{{route('post.create')}}">Create Post</a></li>
-                    <li><a class="nav-link" href="{{route('profile')}}">Profile</a></li>
+                    <li><a class="nav-link" href="{{route('post.create')}}">@lang('nav.Create Post')</a></li>
+                    <li><a class="nav-link" href="{{route('profile')}}">@lang('nav.Profile')</a></li>
             @else
-                <li><a class="nav-link" href="{{route('register')}}">Register</a></li>
-                <li><a class="nav-link" href="{{route('login')}}">Login</a></li>
+                <li><a class="nav-link" href="{{route('register')}}">@lang('nav.Register')</a></li>
+                <li><a class="nav-link" href="{{route('login')}}">@lang('nav.Login')</a></li>
             @endif
-            <li class="lang"><a href="">
+            <li class="lang"><a href="{{route('locale', ['lang' => 'en'])}}">
                 <img class="language" src="{{asset('images/app/icons/en.png')}}">
             </a></li>
-            <li class="lang"><a href="">
+            <li class="lang"><a href="{{route('locale', ['lang' => 'ru'])}}">
                 <img class="language" src="{{asset('images/app/icons/ru.png')}}">
             </a></li>
         </ul>
@@ -31,7 +31,7 @@
                         <p class="user-name">{{Auth::user()->name}}</p>
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                            Logout
+                            @lang('nav.Logout')
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

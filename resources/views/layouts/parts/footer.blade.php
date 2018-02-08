@@ -1,5 +1,5 @@
 <footer class="blog-footer">
     <p>
-        @ {{date('Y')}} Powered by Laravel and Bootstrap frameworks
+        @ {{date('Y')}} @lang('footer.Developed by using Laravel and Bootstrap frameworks.')
     </p>
 </footer>

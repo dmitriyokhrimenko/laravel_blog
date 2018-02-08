@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>
-            Learning Laravel Blog
+            @lang('main.appName')
     </title>
 
     <!-- Bootstrap Core CSS -->
@@ -28,20 +28,20 @@
 
 <body>
     @include('layouts.parts.nav')
-    
-    @if(Request::route()->getPrefix() == '/profile')
+
+    @if(Request::route()->getPrefix() == '/profile' || Request::route()->getPrefix() == App::getLocale() . '/profile')
         @include('layouts.parts.additionalNav')
         <section class="main clear profile">
     @else
         <section class="main clear">
-    @endif 
-    
-    
+    @endif
+
+
             <div class="container">
                 <div class="row">
-    
+
                         @yield('content')
-    
+
             </div><!-- /.row -->
             </div><!-- /.container -->
         </section>

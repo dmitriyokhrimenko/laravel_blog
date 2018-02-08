@@ -383,6 +383,7 @@ h6, .h6 {
 .profile-photo img
 {
     width: 100%;
+    margin-bottom: 0.5rem;
 }
 .clr
 {
@@ -396,7 +397,6 @@ h6, .h6 {
 {
     overflow: hidden;
     width: 100%;
-    margin-top: 1em;
     font-size: 1rem;
 }
 .edit-user-data
@@ -415,4 +415,14 @@ h6, .h6 {
 {
     padding-left: 5px !important;
     padding-right: 5px !important;
+}
+
+.clear .article-card .card-img-top
+{
+    height: 250px;
+}
+
+.post-not-found
+{
+  width: 100%;
 }

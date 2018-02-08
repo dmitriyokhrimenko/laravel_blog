@@ -1,9 +1,9 @@
 <div class="col-sm-3 blog-sidebar">
     <div class="sidebar-module sidebar-module-inset">
-        <h4>Archives</h4>
+        <h4>@lang('sidebar.Archive')</h4>
         <ol class="list-unstyled">
           @foreach($archive as $one)
-            <li><a href="{{route('archive', ['month' => $one->month, 'year' => $one->year])}}">{{$one->month}} {{$one->year}} ({{$one->posts}})</a></li>
+            <li><a href="{{route('archive', ['month' => $one->month, 'year' => $one->year])}}">@lang("sidebar.$one->month") {{$one->year}} ({{$one->posts}})</a></li>
           @endforeach
     </div>
     <div class="sidebar-module">

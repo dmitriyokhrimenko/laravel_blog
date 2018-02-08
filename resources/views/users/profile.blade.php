@@ -5,7 +5,7 @@
     <div class="col-sm-12 blog-main">
                 <div class="row user-data">
                     <div class="col-sm-3 profile-photo">
-                       
+
                         @if(!empty($user->photo) && file_exists(public_path('/images/profilePhoto/' . $user->photo)))
                             <img src="{{asset('/images/profilePhoto/' . $user->photo)}}" alt="" class="">
                         @else
@@ -21,37 +21,37 @@
                                     </b>
                                 </h2>
                             @endif
-                            
+
                             @if(!empty($user->city))
-                            <b>City</b>
+                            <b>@lang('indexUser.City')</b>
                                 <br/>
                                     <i>{{$user->city}}</i>
                                         <br/>
                             @endif
-                            
+
                             @if(!empty($user->country))
-                            <b>Country</b>
+                            <b>@lang('indexUser.Country')</b>
                                 <br/>
                                     <i>{{$user->country}}</i>
                                         <br/>
                             @endif
-                            
+
                             @if(!empty($user->age))
-                            <b>Age</b>
+                            <b>@lang('indexUser.Age')</b>
                                 <br/>
                                     <i>{{$user->age}}</i>
                                         <br/>
                             @endif
-                   
+
                             @if(!empty($user->email))
-                            <b>E-mail</b>
+                            <b>@lang('indexUser.E-mail')</b>
                                 <br/>
                                     <i>{{$user->email}}</i>
                                         <br/>
                             @endif
-                                        
+
                             @if(!empty($user->telephone))
-                            <b>Telephone</b>
+                            <b>@lang('indexUser.Telephone')</b>
                                 <br/>
                                     <i>{{$user->telephone}}</i>
                                         <br/>
@@ -59,23 +59,23 @@
                         </p>
                     </div>
                 </div>
-        
+
         <!--Delete profile-->
         <button type="button" class="delete btn btn-danger" data-toggle="modal" data-target="#deleteAccount">
-                <i class="fas fa-times"></i><span> Delete account</span>
+                <i class="fas fa-times"></i><span> @lang('profile.Delete account')</span>
         </button>
-        
+
         <!--Edit profile-->
         <a class="btn btn-primary edit-profile" href="{{route('edit.profile')}}" role="button">
-            <span> Edit personal data</span>
+            <span> @lang('profile.Edit personal data')</span>
         </a>
-        
+
         <!--Modal window delete profile-->
         <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+               <h5 class="modal-title" id="exampleModalLabel">@lang('profile.Are you sure?')</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">x</span>
                </button>
@@ -85,19 +85,16 @@
                     {{ csrf_field()}}
                     {{method_field('DELETE')}}
                     <button type="submit" class="delete btn btn-danger">
-                        <span> Delete account</span>
+                        <span> @lang('profile.Delete account')</span>
                     </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('profile.Close')</button>
                 </form>
              </div>
             </div>
           </div>
         </div>
-        
-        
+
+
     </div><!-- /.blog-main -->
 
 @endsection
-
-
-
