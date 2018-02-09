@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <ul class="nav top-nav">
-            <li><a class="nav-link active" href="/">@lang('nav.Home')</a></li>
+            <li><a class="nav-link active" href="{{route('home')}}">@lang('nav.Home')</a></li>
             @if (Auth::check())
                     <li><a class="nav-link" href="{{route('post.create')}}">@lang('nav.Create Post')</a></li>
                     <li><a class="nav-link" href="{{route('profile')}}">@lang('nav.Profile')</a></li>

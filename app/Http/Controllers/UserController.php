@@ -21,6 +21,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = User::find($request->id);
+        if ($user->role === 'admin') {
+            return abort('404');
+        }
         if(Auth::check()){
             if($user->id == Auth::user()->id){
                 return redirect(route('profile'));
@@ -34,7 +37,7 @@ class UserController extends Controller
         $user = Auth::user();
         return view('users.profile', compact(['user']));
     }
-    
+
     public function delete()
     {
         $user = User::find(Auth::user()->id);
@@ -42,7 +45,7 @@ class UserController extends Controller
         $user->delete();
         return redirect()->home();
     }
-    
+
     public function edit()
     {
 
@@ -55,7 +58,7 @@ class UserController extends Controller
         if(isset($request->photo)){
             $userPhoto = $request->file('photo')->getClientOriginalName();
             $request->file('photo')->move(public_path() . '/images/profilePhoto', $request->file('photo')->getClientOriginalName());
-            $user_data = 
+            $user_data =
             [
                 "photo" => $userPhoto,
                 "name" => $request->name,
@@ -70,7 +73,7 @@ class UserController extends Controller
         }
         else{
 
-            $user_data = 
+            $user_data =
             [
                 "name" => $request->name,
                 "surname" => $request->surname,
@@ -82,20 +85,20 @@ class UserController extends Controller
                 "telephone" => $request->telephone,
             ];
         }
-        
+
         $user = User::find(Auth::user()->id);
         $user->update($user_data);
         return redirect()->route('profile');
     }
 
-    public function userPosts() 
+    public function userPosts()
     {
         $user = $this->repo->getData();
         $posts = $user->posts;
         return view('users.userPosts', compact(['user', 'posts']));
     }
-    
-    public function userComments() 
+
+    public function userComments()
     {
         $user = $this->repo->getData();
         $comments = $user->comments;

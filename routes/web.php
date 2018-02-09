@@ -10,7 +10,32 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 Route::group(['prefix' => App\Http\Middleware\Language::getLocale()], function(){
+
+      //Admin part
+
+  Route::group(['prefix' => 'admin'], function(){
+
+      Route::group(['middleware' => 'admin'], function(){
+
+          Route::get('/', 'Admin\AdminController@index')->name('admin');
+      });
+
+      Auth::routes();
+
+      Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+
+      Route::post('login', 'Auth\AdminLoginController@login');
+
+      Route::any('register', function(){
+
+          return abort(404);
+      });
+
+  });   //End admin part
+
     Auth::routes();
 
     //Auth middleware routes
@@ -65,13 +90,13 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLocale()], function()
 
           //Shared routes
 
-          Route::get('/', 'PostController@index');
-
-          Route::get('/home', 'HomeController@index')->name('home');
+          Route::get('/', 'PostController@index')->name('home');
 
           Route::get('/post/{id}', 'PostController@single_post')->name('single.post');
 
           Route::get('/archive/{year}/{month}', 'PostController@archive')->name('archive');
+
+
 });
 
 Route::get('/change_locale/{lang}', function ($lang) {
