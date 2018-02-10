@@ -19,7 +19,7 @@ class AdminLogin
     {
           if($request->email){
               $findUserRole = User::where('email', $request->email)->first()->role;
-              if($findUserRole !== 'admin') return redirect()->route('home');
+              if($findUserRole !== 'admin') return redirect()->route('login');
           }
         return $next($request);
     }

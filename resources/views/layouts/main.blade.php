@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('/css//bootstrap/css/bootstrap.min.css')}}">
     <link href="{{ asset('/css/forblog.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/media.css') }}" rel="stylesheet">
     <link href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <script src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
     @if(Route::currentRouteName() == 'post.create')

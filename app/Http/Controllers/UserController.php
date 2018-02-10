@@ -21,9 +21,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = User::find($request->id);
-        if ($user->role === 'admin') {
-            return abort('404');
-        }
         if(Auth::check()){
             if($user->id == Auth::user()->id){
                 return redirect(route('profile'));

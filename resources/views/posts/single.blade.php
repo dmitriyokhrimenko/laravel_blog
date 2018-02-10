@@ -22,7 +22,7 @@
 
         <div class="detailBox">
             <div class="titleBox">
-                <label>@lang('singlePost.Comments') ({{$comments->count()}})</label>
+                <label>@lang('singlePost.Comments') ({{$post->comments->count()}})</label>
             </div>
 
             <div class="actionBox">
@@ -46,18 +46,19 @@
                         </li>
                     @endforeach
                 </ul>
-                @if(Auth::check())
-                    <form role="form" method = "POST" action="{{route('create.comment', ['post_id' => $post->id])}}">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <textarea class="form-control" type="text" placeholder="@lang('singlePost.Your comments')" name="body" /></textarea>
-                        </div>
-                        <button class="btn btn-primary">@lang('singlePost.Add comment')</button>
-                    </form>
-                @endif
+                {{$comments->links()}}
+
             </div>
         </div>
-
+        @if(Auth::check())
+            <form role="form" method = "POST" action="{{route('create.comment', ['post_id' => $post->id])}}">
+                {{csrf_field()}}
+                <div class="form-group">
+                    <textarea class="form-control" type="text" placeholder="@lang('singlePost.Your comments')" name="body" /></textarea>
+                </div>
+                <button class="btn btn-primary">@lang('singlePost.Add comment')</button>
+            </form>
+        @endif
     </div><!-- /.blog-main -->
 
 @endsection

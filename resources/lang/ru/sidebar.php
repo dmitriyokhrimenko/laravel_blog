@@ -1,5 +1,6 @@
 <?php
 return [
+  'No posts yet!' => 'Статей еще нет!',
   'Archive' => 'Архив',
   'January' => 'Январь',
   'February' => 'Февраль',

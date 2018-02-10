@@ -3,9 +3,10 @@
 @section('content')
 
     <div class="col-sm-9 blog-main">
+      @if($posts->count() > 0)
         <div class="row">
             @foreach($posts as $post)
-            
+
                 @if($post->status == 'published')
                     <div class="col-sm-6 article-card">
                         <div class="card">
@@ -29,6 +30,9 @@
             <a class="btn btn-outline-primary" href="/">Older</a>
             <a class="btn btn-outline-primary" href="?sort=desc">Newer</a>
         </nav>
+      @else
+          <h2 class="text-center"><i>@lang('home.Not published any posts!!!')</i></h2>
+      @endif
     </div><!-- /.blog-main -->
 
 @endsection

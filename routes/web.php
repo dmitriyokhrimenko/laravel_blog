@@ -21,6 +21,25 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLocale()], function()
       Route::group(['middleware' => 'admin'], function(){
 
           Route::get('/', 'Admin\AdminController@index')->name('admin');
+
+
+          //Admin users routes
+
+          Route::get('/users', 'Admin\UserController@index')->name('admin.users');
+
+          Route::delete('/user/delete', 'Admin\UserController@delete')->name('admin.delete.user');
+
+          //Admin posts routes
+
+          Route::get('/posts', 'Admin\PostController@index')->name('admin.posts');
+
+          Route::delete('/post/delete', 'Admin\PostController@delete')->name('admin.delete.post');
+
+          //Admin comments routes
+
+          Route::get('/comments', 'Admin\CommentController@index')->name('admin.comments');
+
+          Route::delete('/comment/delete', 'Admin\CommentController@delete')->name('admin.delete.comment');
       });
 
       Auth::routes();

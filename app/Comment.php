@@ -16,4 +16,14 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Post');
     }
+
+    public function getAllComments()
+    {
+        return $this->paginate(10);
+    }
+
+    public function adminDeleteComment()
+    {
+        return $this->find(request('id'))->delete();
+    }
 }

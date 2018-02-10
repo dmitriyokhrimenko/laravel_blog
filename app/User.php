@@ -15,14 +15,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'photo', 
-        'name', 
+        'photo',
+        'name',
         'email',
         'password',
         'surname',
-        'nichname', 
-        'city', 
-        'country', 
+        'nichname',
+        'city',
+        'country',
         'age',
         'telephone',
     ];
@@ -44,5 +44,15 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function getAllUsers()
+    {
+        return $this->all();
+    }
+
+    public function adminDeleteUser()
+    {
+        return $this->find(request('id'))->delete();
     }
 }

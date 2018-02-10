@@ -22,7 +22,6 @@ class PostController extends Controller
         }
         else
             $posts = Post::paginate(6);
-
         return view('home', compact('posts'));
     }
 
@@ -45,7 +44,7 @@ class PostController extends Controller
             $thumbnail = $request->file('thumbnail')->getClientOriginalName();
             $request->file('thumbnail')->move(public_path() . '/images/thumbnails', $request->file('thumbnail')->getClientOriginalName());
         }
-        else $thumbnail = '';
+        else $thumbnail = null;
 
         Post::create([
             'title' => $request->title,
@@ -99,17 +98,13 @@ class PostController extends Controller
         return redirect()->route('single.post', ['id' => $request->id]);
     }
 
-    // public function users_posts(Request $request)
-    // {
-    //     $user = User::find($request->id);
-    //     $posts = $user->posts;
-    //     return view('posts.users_posts', compact('posts'));
-    // }
-
     public function single_post(Request $request)
     {
         $post = Post::find($request->id);
-        $comments = $post->comments;
+        if ($post->user_id !== Auth::id() && $post->status === 'no-published') {
+            abort('404');
+        }
+        $comments = $post->comments()->orderBy('created_at', 'desc')->paginate(10);
         return view('posts.single', compact(['post', 'comments']));
     }
 

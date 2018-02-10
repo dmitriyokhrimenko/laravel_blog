@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('preview');
             $table->text('body');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable($value = true);
             $table->unsignedinteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();

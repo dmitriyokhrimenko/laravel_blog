@@ -18,4 +18,14 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function getAllPosts()
+    {
+        return $this->all();
+    }
+
+    public function adminDeletePost()
+    {
+        return $this->find(request('id'))->delete();
+    }
 }

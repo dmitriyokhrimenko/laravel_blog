@@ -1,6 +1,11 @@
 <div class="blog-masthead">
     <div class="container-fluid">
 
+      <button class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
         <ul class="nav top-nav">
             <li><a class="nav-link active" href="{{route('home')}}">@lang('nav.Home')</a></li>
             @if (Auth::check())

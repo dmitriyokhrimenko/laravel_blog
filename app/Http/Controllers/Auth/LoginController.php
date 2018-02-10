@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Middleware\Language;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+     protected $locale;
+     protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -35,5 +37,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware(['guest', 'userlogin'])->except('logout');
+        $this->locale = Language::getLocale();
+        $this->setRedirect();
+    }
+
+    protected function setRedirect()
+    {
+        if (!isset($this->locale)) {
+          $this->redirectTo = '/';
+        }
+        else $this->redirectTo = $this->locale;
     }
 }
