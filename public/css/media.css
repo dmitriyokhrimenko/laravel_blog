@@ -1,11 +1,304 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) and (min-width: 767px) {
+    .clear .container
+    {
+        width: 100%;
+        max-width: 90%;
+    }
+    .clear .card-img-top
+    {
+        height: 200px !important;
+    }
+    .clear .card-body
+    {
+        height: 180px !important;
+    }
+    .clear .card-text
+    {
+        display: none;
+    }
+}
+@media screen and (max-width: 992px) and (min-width: 580px) {
+  .card img
+  {
+      height: 220px;
+  }
+  .card-body
+  {
+    height: 200px;
+  }
+}
 
-.nav.top-nav
-{
-    display: none;
+@media screen and (max-width: 960px){
+    .article-card
+    {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 2rem;
+    }
+    .blog-main .row
+    {
+        padding: 0 2rem;
+    }
 }
-.navbar-toggle
+
+@media screen and (max-width: 992px)
 {
-  display: block;
+    .card-text
+    {
+        display: none;
+    }
+    .file-upload
+    {
+        width: 100%;
+        max-width: 100%;
+    }
+    .delete-avatar-profile
+    {
+        float: none;
+        margin-right: 0;
+    }
+    .delete-photo
+    {
+        width: 100%;
+    }
+    .edit-user-data
+    {
+        width: 100%;
+        padding: 0 1em;
+        max-width: 100%;
+    }
 }
+
+@media screen and (max-width: 767px) {
+
+    .account-info
+    {
+      display: inline-block;
+      float: right;
+    }
+
+    .account-avatar
+    {
+        float: none;
+        text-align: center;
+    }
+    .logout
+    {
+        text-align: center;
+    }
+    .logout a
+    {
+        padding-left: 0 !important;
+    }
+    .user-name
+    {
+        padding-left: 0 !important;
+    }
+    .blog-sidebar
+    {
+        padding: 0;
+    }
+    .sidebar-module-inset
+    {
+        padding: 0 1rem 1rem 1rem;
+    }
+    .sidebar-module-inset h4
+    {
+        padding: 1rem 0;
+    }
+    .content
+    {
+        max-width: 80%;
+    }
+    .container
+    {
+        max-width: 90%;
+        flex: 0 0 90%;
+    }
+    .blog-main
+    {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .clear .card-img-top
+    {
+        height: 180px !important;
+    }
+    .blog-main .row
+    {
+        padding: 0;
+    }
+    .card-body
+    {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+  .navbar-toggle
+  {
+    display: block;
+  }
+  .nav.top-nav
+  {
+      position: fixed;
+      display: block;
+      position: fixed;
+      top: 120px;
+      left: -195px;
+      background-color: #CEF6F5;
+      z-index: 1;
+  }
+  .primary-menu
+  {
+      display: none !important;
+  }
+  .mobile-menu
+  {
+      display: block !important;
+  }
+  .locale
+  {
+    padding-top: 20px;
+    position: absolute;
+    left: 40%;
+  }
+  .blog-masthead
+  {
+      position: fixed;
+      width: 100%;
+      height: 120px;
+      z-index: 1;
+  }
+  .blog-header
+  {
+      padding-top: 120px;
+  }
+  .clear
+  {
+      padding-top: 140px;
+  }
+  .clear .container
+  {
+      width: 90%;
+  }
+  .profile-photo
+  {
+      flex: 0 0 50%;
+      max-width: 100%;
+      margin: 0 auto;
+  }
+  .col-8
+  {
+    flex: 0 0 100%;
+    max-width: 100%
+  }
+  .clear .card-img-top
+  {
+      height: 180px !important;
+  }
+  .card-body
+  {
+      height: 120px;
+  }
+  .article-card
+  {
+      padding: 0 0.5rem !important;
+  }
+  .form-group.container .col-sm-4.col-md-4, .align-self-end
+  {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+    margin: 0 auto 5px;
+  }
+
+  .form-group.container .align-self-end input
+  {
+      width: 100%;
+      margin: 5px 0;
+  }
+  .thumb
+  {
+      max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 580px) and (min-width: 500px) {
+    .content
+    {
+        width: 90%;
+    }
+    .col-sm-6
+    {
+        width: 50%;
+    }
+    .card img
+    {
+        height: 150px;
+    }
+    .card-body
+    {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .content
+    {
+        max-width: 80%;
+    }
+    .clear .col-sm-6
+    {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+    .profile-photo
+    {
+        flex: 0 0 75%;
+    }
+    .article-card
+    {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .clear .card-img-top
+    {
+        height: 220px !important;
+    }
+    .card-body
+    {
+        height: 180px;
+    }
+}
+
+@media screen and (max-width: 420px){
+  .card-body
+  {
+      height: 200px;
+  }
+  .card img
+  {
+      height: 250px;
+  }
+  .content
+  {
+      max-width: 90%;
+  }
+  .form-group.container .col-sm-4.col-md-4, .align-self-end
+  {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0 auto 5px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 320px) and (min-width: 280px) {
+  .card img
+  {
+      height: 200px;
+  }
 }

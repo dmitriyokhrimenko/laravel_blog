@@ -5,102 +5,63 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\User;
 use \App\Post;
-use App\Comment;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+
 
 class PostController extends Controller
 {
 
-    public function index(Request $request)
+    //Get
+    public function index(Post $post)
     {
-        if ($request->sort == 'desc')
-        {
-            $posts = Post::orderby('created_at', 'desc')->paginate(6);
-            $posts->appends(['sort' => 'desc'])->links();
-        }
-        else
-            $posts = Post::paginate(6);
+        $posts = $post->index();
         return view('home', compact('posts'));
     }
 
+    //Create
     public function create()
     {
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    //Store
+    public function store(Request $request, Post $post)
     {
-
-        if(isset($request->savepublish)){
-            $status = 'published';
-        }
-        elseif (isset($request->save)) {
-            $status = 'no-published';
-        }
-
-        if($request->file('thumbnail')){
-            $thumbnail = $request->file('thumbnail')->getClientOriginalName();
-            $request->file('thumbnail')->move(public_path() . '/images/thumbnails', $request->file('thumbnail')->getClientOriginalName());
-        }
-        else $thumbnail = null;
-
-        Post::create([
-            'title' => $request->title,
-            'preview' => $request->preview,
-            'body' => $request->body,
-            'thumbnail' => $thumbnail,
-            'user_id' => Auth::id(),
-            'status' => $status,
-        ]);
-        return redirect('/');
+        $post->store($request);
+        Session::flash('post_saved', __('postCreate.Post has been saved successful!'));
+        return redirect()->route('user.posts');
     }
 
-    public function delete(Request $request)
+    //Delete
+    public function delete(Post $post)
     {
-        $post = Post::find($request->id);
-
-        File::deleteDirectory(public_path('/postImages/' . $post->id));
-
-        $post->delete();
-        return redirect()->back();
+        if($post->delete_post())
+        {
+            Session::flash('post_deleted', __('postCreate.Post has been deleted successful!'));
+            return redirect()->back();
+        }
     }
 
-    public function edit(Request $request)
+    //Edit
+    public function edit(Request $request, Post $post)
     {
-        $post = Post::find($request->id);
+        $post = $post->edit_post($request);
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request)
+    //Update
+    public function update(Request $request, Post $post)
     {
-        if(isset($request->thumbnail)){
-            $thumbnail = $request->file('thumbnail')->getClientOriginalName();
-            $request->file('thumbnail')->move(public_path() . '/images/thumbnails', $request->file('thumbnail')->getClientOriginalName());
-            $post_data =
-            [
-                'title' => $request->title,
-                'preview' => $request->preview,
-                'body' => $request->body,
-                'thumbnail' => $thumbnail,
-            ];
-        }else{
-            $post_data =
-            [
-                'title' => $request->title,
-                'preview' => $request->preview,
-                'body' => $request->body,
-            ];
-        }
-        $post = Post::find($request->id);
-        $post->update($post_data);
-        return redirect()->route('single.post', ['id' => $request->id]);
+        $post->update_post($request);
+        Session::flash('post_updated', __('postCreate.Post has been updated successful!'));
+        return redirect()->route('user.posts');
     }
 
-    public function single_post(Request $request)
+    //Single
+    public function single_post(Request $request, Post $post)
     {
-        $post = Post::find($request->id);
+        $post = $post->single_post($request);
         if ($post->user_id !== Auth::id() && $post->status === 'no-published') {
             abort('404');
         }
@@ -108,26 +69,18 @@ class PostController extends Controller
         return view('posts.single', compact(['post', 'comments']));
     }
 
-    public function changeStatus(Request $request)
+    //Change status
+    public function changeStatus(Request $request, Post $post)
     {
-        $post = Post::where('id', $request->id)->first();
-
-        if($post->status == 'published'){
-            $status = 'no-published';
-        }
-        else if($post->status == 'no-published'){
-            $status = 'published';
-        }
-        $post->update(['status' => $status]);
+        $post->changeStatus($request);
+        Session::flash('change_status', __('postCreate.Status changed!'));
         return redirect()->back();
     }
 
-    public function archive(Request $request)
+    //Archive
+    public function archive(Request $request, Post $post)
     {
-        $posts = Post::where('status', 'published')
-        ->whereYear('created_at', $request->year)
-        ->whereMonth('created_at', Carbon::parse($request->month)->month)
-        ->paginate(6);
-        return view('posts.archive', compact('posts'));
+      $posts= $post->archive($request);
+      return view('posts.archive', compact('posts'));
     }
 }

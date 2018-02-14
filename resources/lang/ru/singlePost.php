@@ -5,4 +5,5 @@ return [
   'No comments yet! Be first!' => 'Еще нет комментариев! Будь первым!',
   'Your comments' => 'Ваш комментарий',
   'Add comment' => 'Добавить комментарий',
+  'Edit post' => 'Редактировать статью',
 ];

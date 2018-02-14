@@ -8,20 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, Comment $comment)
     {
-        Comment::create([
-            'body' => $request->body,
-            'user_id' => $request->user()->id,
-            'post_id' => $request->post_id,
-        ]);
+        $comment->create_comment($request);
         return back();
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request, Comment $comment)
     {
-        $comment = Comment::find($request->id);
-        $comment->delete();
+        $comment->delete_comment($request);
         return redirect()->back();
     }
 
@@ -31,12 +26,9 @@ class CommentController extends Controller
         return view('comments.edit', compact('comment'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Comment $comment)
     {
-        $comment = Comment::find($request->id);
-        $comment->update([
-            'body' => $request->body,
-        ]);
+        $comment->update_comment($request);
         return redirect()->route('user.comments');
     }
 }

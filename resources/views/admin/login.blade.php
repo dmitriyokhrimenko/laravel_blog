@@ -2,7 +2,9 @@
 
 @section('login')
 <div class="blog-header-admin text-center">
-    <a href="{{route('home')}}" class="btn back-to-site">Back to site</a>
+    <p class="login-back-to-site">
+        <a href="{{route('home')}}" class="btn back-to-site">Back to site</a>
+    </p>
     <img src="{{asset('images/app/admin/adminlogin.png')}}" class="blog-header-logo-admin" alt="blog-header">
 </div>
 

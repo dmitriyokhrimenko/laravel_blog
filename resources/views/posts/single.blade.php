@@ -17,7 +17,9 @@
                 </div>
             <hr/>
             <p>{!!$post->body!!}</p>
-
+            @if($post->user->id == Auth::id())
+                <p class="text-right link-edit-post"><a href="{{route('edit.post', ['id' => $post->id])}}">@lang('singlePost.Edit post')</a></p>
+            @endif
         </div><!-- /.blog-post -->
 
         <div class="detailBox">
@@ -26,7 +28,7 @@
             </div>
 
             <div class="actionBox">
-                @if($comments->count() < 1)
+                @if($comments->count() < 1 && Auth::check())
                     <h4>@lang('singlePost.No comments yet! Be first!')</h4>
                 @endif
                 <ul class="commentList">

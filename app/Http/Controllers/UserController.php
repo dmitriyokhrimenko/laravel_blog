@@ -18,9 +18,10 @@ class UserController extends Controller
         $this->repo = $repository;
     }
 
-    public function index(Request $request)
+    //Share user profile
+    public function index(Request $request, User $user)
     {
-        $user = User::find($request->id);
+        $user = $user->index($request);
         if(Auth::check()){
             if($user->id == Auth::user()->id){
                 return redirect(route('profile'));
@@ -29,20 +30,30 @@ class UserController extends Controller
         return view('users.index', compact('user'));
     }
 
+    //User profile
     public function profile(Request $request)
     {
         $user = Auth::user();
         return view('users.profile', compact(['user']));
     }
 
-    public function delete()
+    //Delete user
+    public function delete(User $user)
     {
-        $user = User::find(Auth::user()->id);
-        Auth::logout();
-        $user->delete();
+        $user->delete_user();
         return redirect()->home();
     }
 
+    //Delete photo ajax
+    public function deletePhoto(User $user)
+    {
+        $user = User::find(Auth::id());
+        //File::deleteDirectory(public_path('/postImages/' . $post->id));
+        $user->update(['photo' => null]);
+        return response()->json(['response' => User::find(Auth::id())], 200);
+    }
+
+    //Edit user
     public function edit()
     {
 
@@ -50,41 +61,10 @@ class UserController extends Controller
         return view('users.editProfile', compact('user'));
     }
 
-    public function update(Request $request)
+    //Update user
+    public function update(Request $request, User $user)
     {
-        if(isset($request->photo)){
-            $userPhoto = $request->file('photo')->getClientOriginalName();
-            $request->file('photo')->move(public_path() . '/images/profilePhoto', $request->file('photo')->getClientOriginalName());
-            $user_data =
-            [
-                "photo" => $userPhoto,
-                "name" => $request->name,
-                "surname" => $request->surname,
-                "nickname" => $request->nackname,
-                "city" => $request->city,
-                "country" => $request->country,
-                "age" => $request->age,
-                "email" => $request->email,
-                "telephone" => $request->telephone,
-            ];
-        }
-        else{
-
-            $user_data =
-            [
-                "name" => $request->name,
-                "surname" => $request->surname,
-                "nickname" => $request->nackname,
-                "city" => $request->city,
-                "country" => $request->country,
-                "age" => $request->age,
-                "email" => $request->email,
-                "telephone" => $request->telephone,
-            ];
-        }
-
-        $user = User::find(Auth::user()->id);
-        $user->update($user_data);
+        $user->update_user($request);
         return redirect()->route('profile');
     }
 

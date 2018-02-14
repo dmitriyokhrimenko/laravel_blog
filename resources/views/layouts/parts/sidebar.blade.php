@@ -1,4 +1,4 @@
-<div class="col-sm-3 blog-sidebar">
+<div class="col-sm-12 col-md-3 blog-sidebar">
     <div class="sidebar-module sidebar-module-inset">
         <h4 class="text-center"><b>@lang('sidebar.Archive')</b></h4>
         <ol class="list-unstyled">

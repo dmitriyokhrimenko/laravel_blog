@@ -18,6 +18,7 @@
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
     <link href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <script src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('/js/scroll-top.js')}}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
     <link rel="stylesheet" href="{{asset('/adminpart/assets/css/normalize.css')}}">

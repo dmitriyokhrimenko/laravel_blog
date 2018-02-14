@@ -11,6 +11,16 @@
                         @else
                             <img src="{{asset('/images/app/no-person.png')}}" alt="" class="">
                         @endif
+
+                        <!--Edit profile-->
+                        <a class="btn btn-primary edit-profile" href="{{route('edit.profile')}}" role="button">
+                            <span> @lang('profile.Edit personal data')</span>
+                        </a>
+
+                        <!--Delete profile-->
+                        <button type="button" class="delete btn btn-danger" data-toggle="modal" data-target="#deleteAccount">
+                                <i class="fas fa-times"></i><span> @lang('profile.Delete account')</span>
+                        </button>
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <p>
@@ -59,16 +69,6 @@
                         </p>
                     </div>
                 </div>
-
-        <!--Delete profile-->
-        <button type="button" class="delete btn btn-danger" data-toggle="modal" data-target="#deleteAccount">
-                <i class="fas fa-times"></i><span> @lang('profile.Delete account')</span>
-        </button>
-
-        <!--Edit profile-->
-        <a class="btn btn-primary edit-profile" href="{{route('edit.profile')}}" role="button">
-            <span> @lang('profile.Edit personal data')</span>
-        </a>
 
         <!--Modal window delete profile-->
         <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel" aria-hidden="true">

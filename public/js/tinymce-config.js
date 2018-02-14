@@ -1,7 +1,7 @@
 var editor_config = {
             path_absolute : "/",
             selector: '#body',
-            plugins: 
+            plugins:
                 [
                     "advlist autoresize autolink lists link image charmap print preview hr anchor pagebreak",
                     "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -10,9 +10,10 @@ var editor_config = {
                 ],
             autoresize_max_height: 300,
             menubar: false,
-            toolbar1: "alignleft aligncenter alignright alignjustify | bold italic underline strikethrough | formatselect fontselect fontsizeselect",
-            toolbar2: "bullist numlist | blockquote | link unlink image | preview | forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons",
-            textcolor_map: 
+            toolbar1: "alignleft aligncenter alignright alignjustify | bold italic underline strikethrough | formatselect",
+            toolbar2: "fontselect fontsizeselect | subscript superscript | charmap emoticons",
+            toolbar3: "bullist numlist | blockquote | link unlink image | preview | forecolor backcolor | table | hr removeformat",
+            textcolor_map:
                 [
                     "000000", "Black",
                     "993300", "Burnt orange",
@@ -58,7 +59,7 @@ var editor_config = {
                 file_browser_callback : function(field_name, url, type, win) {
                     var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
                     var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-                    
+
                     var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
                     if (type == 'image') {
                       cmsURL = cmsURL + "&type=Images";

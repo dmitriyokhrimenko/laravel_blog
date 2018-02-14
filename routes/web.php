@@ -99,6 +99,8 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLocale()], function()
 
               Route::delete('/deletecomment', 'CommentController@delete')->name('delete.comment');
 
+              Route::get('/delete_photo', 'UserController@deletePhoto');
+
               Route::delete('/deleteprofile', 'UserController@delete')->name('delete.profile');
 
               Route::get('/editprofile', 'UserController@edit')->name('edit.profile');

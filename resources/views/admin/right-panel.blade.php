@@ -20,7 +20,7 @@
                       <li class="lang"><a href="{{route('locale', ['lang' => 'ru'])}}">
                           <img class="language" src="{{asset('images/app/icons/ru.png')}}">
                       </a></li>
-                            <div class="account-info">
+                            <div class="account-avatar">
                                 @if(isset(Auth::user()->photo) && file_exists(public_path('/images/profilePhoto/' . Auth::user()->photo)))
                                     <a class="nav-link" href="{{route('profile')}}"><img src="{{asset('images/profilePhoto/' . Auth::user()->photo)}}" /></a>
                                 @else

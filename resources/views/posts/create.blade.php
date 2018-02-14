@@ -15,18 +15,28 @@
             <div class="form-group">
                 <textarea id="body" class="form-control" name="body"></textarea>
             </div>
-            <div class="form-group">
-                <div class="col-sm-3 post-thumbnail">
-                    <span id="output"></span>
-                </div>
-                <div class="clr"></div>
-                <label for="thumbnail">@lang('postCreate.Post thumbnail')</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-                <input id="thumbnail" name="thumbnail" type="file" />
-            </div>
-
-            <input type="submit" class="btn btn-primary" value="@lang('postCreate.Save and publish')" name="savepublish">
-            <input type="submit" class="btn btn-primary" value="@lang('postCreate.Save')" name='save'>
+            <div class="form-group container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 col-auto mr-auto">
+                        <div class="post-thumbnail">
+                            <span id="output"></span>
+                        </div>
+                        <div class="clr"></div>
+                        <label for="thumbnail">@lang('postCreate.Post thumbnail')</label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+                        <div class="file-upload post-thumb">
+                            <label>
+                                <input id="thumbnail" name="thumbnail" type="file" class="thumbnail" />
+                                <span>@lang('postCreate.Select thumbnail')</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-auto align-self-end">
+                      <input type="submit" class="btn btn-primary" value="@lang('postCreate.Save')" name='save'>
+                      <input type="submit" class="btn btn-primary" value="@lang('postCreate.Save and publish')" name="savepublish">
+                    </div>
+                  </div>
+              </div>
         </form>
     </div>
 @endsection

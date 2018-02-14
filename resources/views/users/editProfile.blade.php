@@ -17,8 +17,17 @@
                                     <img src="{{asset('/images/app/no-person.png')}}" alt="" class="">
                                 @endif
                             </span>
+                        <p class="delete-avatar-profile">
+                            <button type="button" name="delete-avatar" class="btn btn-danger delete-photo" id="delete-photo">@lang('editProfile.Delete photo')</button>
+                        </p>
                         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
-                        <input id="thumbnail" name="photo" type="file" />
+                        <div class="file-upload">
+                            <label>
+                                <input id="thumbnail" name="photo" type="file" class="uploade-file" />
+                                <span>@lang('editProfile.Change photo')</span>
+                            </label>
+                        </div>
+
                     </div>
                     <div class="col-8">
                         <div class="form-group">

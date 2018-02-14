@@ -4,6 +4,10 @@
 
     <div class="col-sm-12 blog-main">
         @if (Auth::check())
+
+        <!--Pop up messages-->
+          @include('layouts.parts.successfulActions')
+
             @if ($posts->count() > 0)
                 <table class="table table-striped">
                     <thead>

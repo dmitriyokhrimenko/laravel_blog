@@ -8,7 +8,7 @@
         <div class="row">
             @foreach($posts as $post)
                 @if($post->status == 'published')
-                    <div class="col-sm-4 article-card">
+                    <div class="col-sm-6 col-md-4 article-card">
                         <div class="card">
                             @if(isset($post->thumbnail) && file_exists(public_path('/images/thumbnails/' . $post->thumbnail)))
                                 <img class="card-img-top" src="{{asset('/images/thumbnails/' . $post->thumbnail)}}" alt="{{$post->title}}">
@@ -16,7 +16,7 @@
                                 <img class="card-img-top" src="{{asset('/images/app/no-image.png')}}" alt="no-image">
                             @endif
                             <div class="card-body">
-                                <h2 class="blog-post-title"><a href="{{route('single.post', ['id' => $post->id])}}">{{$post->title}}</a></h2>
+                                <h4 class="blog-post-title"><a href="{{route('single.post', ['id' => $post->id])}}">{{$post->title}}</a></h4>
                                 <p class="blog-post-meta">{{$post->created_at->format('Y-m-d')}}</p>
                                 <p class="card-text">{{$post->preview}}</p>
                             </div>
