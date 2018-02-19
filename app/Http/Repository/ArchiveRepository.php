@@ -17,8 +17,9 @@ class ArchiveRepository
      */
     public static function getData()
     {
-        $archive = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) posts')
-        ->groupBy('month', 'year')
+        $archive = Post::selectRaw('year(created_at) year, monthname(created_at) month, month(created_at) monthnum, count(*) posts')
+        ->orderBy('monthnum')
+        ->groupBy('month', 'year', 'monthnum')
         ->where('status', 'published')
         ->get();
         return $archive;

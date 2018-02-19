@@ -6,8 +6,6 @@
       @if($posts->count() > 0)
         <div class="row">
             @foreach($posts as $post)
-
-                @if($post->status == 'published')
                     <div class="col-sm-6 col-md-6 article-card">
                         <div class="card">
                             @if(isset($post->thumbnail) && file_exists(public_path('/images/thumbnails/' . $post->thumbnail)))
@@ -22,7 +20,6 @@
                             </div>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
         {{$posts->links()}}
@@ -30,5 +27,4 @@
           <h2 class="text-center"><i>@lang('home.Not published any posts!!!')</i></h2>
       @endif
     </div><!-- /.blog-main -->
-
 @endsection

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -41,6 +43,7 @@ class UserController extends Controller
     public function delete(User $user)
     {
         $user->delete_user();
+        Session::flash('profile_delete', __('popUpMessages.Profile successful delete!'));
         return redirect()->home();
     }
 
@@ -48,7 +51,7 @@ class UserController extends Controller
     public function deletePhoto(User $user)
     {
         $user = User::find(Auth::id());
-        //File::deleteDirectory(public_path('/postImages/' . $post->id));
+        File::delete(public_path('/images/profilePhoto/' . $user->photo));
         $user->update(['photo' => null]);
         return response()->json(['response' => User::find(Auth::id())], 200);
     }
@@ -64,8 +67,15 @@ class UserController extends Controller
     //Update user
     public function update(Request $request, User $user)
     {
-        $user->update_user($request);
-        return redirect()->route('profile');
+        $userUpdate = $user->update_user($request);
+        if (is_object($userUpdate)) {
+            if ($userUpdate->fails()) {
+                return back()->withErrors($userUpdate);
+            }
+        } else{
+          Session::flash('profile_update', __('popUpMessages.Profile successful update!'));
+          return redirect()->route('profile');
+        }
     }
 
     public function userPosts()

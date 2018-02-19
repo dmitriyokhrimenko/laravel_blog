@@ -98,12 +98,12 @@ h6, .h6 {
 .main
 {
     margin-bottom: 2rem;
-    min-height: calc(100% - (146.8px + 6.5rem));
+    min-height: calc(100% - 80px - 22.4px - 7.05rem);
 }
 
 .profile
 {
-    min-height: calc(100% - (146.8px + 6.5rem + 47px));
+    min-height: calc(100% - 80px - 22.4px - 7.05rem);
 }
 
 
@@ -427,7 +427,7 @@ h6, .h6 {
 {
     content: url('/public/images/app/icons/edit.png');
 }
-.edit-profile, .delete
+.user-data .edit-profile, .user-data .delete
 {
     width: 100%;
     margin: 5px 0;
@@ -550,15 +550,17 @@ h6, .h6 {
 {
     font-size: 12px;
 }
-.successful-change-status
+.successful-change-status, .successful-delete,
+.successful-update, .successful-save, .successful-profile-update,
+.successful-profile-delete
 {
     display: none;
     position: fixed;
-    top: 130px;
-    left: calc(50% - 105px);
+    top: 100px;
     z-index: 99999;
-    padding: 2rem 5rem;
+    padding: 2rem 90px;
 }
+
 .form-group.container
 {
     width: 100%;
@@ -568,4 +570,36 @@ h6, .h6 {
 .form-group.container .row
 {
     padding: 0;
+}
+.rounded.mx-auto.d-block
+{
+    width: 100%;
+}
+.mobile-post-actions
+{
+    display: inline-block;
+    margin: 0 7%;
+}
+.mobile-posts
+{
+    position: relative;
+}
+.date-of-creation
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 5%;
+}
+.mobile-user-post
+{
+    margin: 2rem 0;
+}
+.select-all
+{
+    margin-right: 1.5rem;
+}
+.errors-validation
+{
+    font-size: 0.75rem;
 }

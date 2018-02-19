@@ -28,19 +28,23 @@ class PostController extends Controller
     //Store
     public function store(Request $request, Post $post)
     {
-        $post->store($request);
-        Session::flash('post_saved', __('postCreate.Post has been saved successful!'));
-        return redirect()->route('user.posts');
+        $post = $post->store($request);
+        if (is_object($post)) {
+            if ($post->fails()) {
+                return back()->withErrors($post);
+            }
+        } else {
+          Session::flash('post_saved', __('popUpMessages.Post has been saved successful!'));
+          return redirect()->route('user.posts');
+        }
     }
 
     //Delete
     public function delete(Post $post)
     {
-        if($post->delete_post())
-        {
-            Session::flash('post_deleted', __('postCreate.Post has been deleted successful!'));
-            return redirect()->back();
-        }
+        $post->delete_post();
+        Session::flash('post_deleted', __('popUpMessages.Post has been deleted successful!'));
+        return redirect()->back();
     }
 
     //Edit
@@ -53,9 +57,15 @@ class PostController extends Controller
     //Update
     public function update(Request $request, Post $post)
     {
-        $post->update_post($request);
-        Session::flash('post_updated', __('postCreate.Post has been updated successful!'));
+        $post = $post->update_post($request);
+        if (is_object($post)) {
+            if ($post->fails()) {
+                return back()->withErrors($post);
+            }
+        } else {
+        Session::flash('post_updated', __('popUpMessages.Post has been updated successful!'));
         return redirect()->route('user.posts');
+      }
     }
 
     //Single
@@ -73,7 +83,7 @@ class PostController extends Controller
     public function changeStatus(Request $request, Post $post)
     {
         $post->changeStatus($request);
-        Session::flash('change_status', __('postCreate.Status changed!'));
+        Session::flash('change_status', __('popUpMessages.Status changed!'));
         return redirect()->back();
     }
 

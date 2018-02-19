@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="col-sm-12 blog-main">
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul class="errors-validation">
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form method="POST" action="{{route('update.post', ['id' => $post->id])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PUT') }}

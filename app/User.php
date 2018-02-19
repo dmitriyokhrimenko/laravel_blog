@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Authenticatable
 {
@@ -48,7 +50,7 @@ class User extends Authenticatable
     }
 
     //Share user profile
-    public function index($request)
+    public function index(Request $request)
     {
         return $this->find($request->id);
 
@@ -63,8 +65,21 @@ class User extends Authenticatable
     }
 
     //Update user
-    public function update_user($request)
+    public function update_user(Request $request)
     {
+        $validator =  Validator::make($request->all(), [
+            'photo' => 'mimes:jpeg,bmp,png',
+            'name' => 'required|max:30',
+            "surname" => 'max:30',
+            "city" => 'max:50',
+            "country" => 'max:50',
+            "age" => 'numeric|nullable',
+            "email" => 'required|email',
+            "telephone" => 'numeric|nullable|max:13',
+        ]);
+        if ($validator->fails()) {
+            return $validator;
+        }
         if(isset($request->photo)){
             $userPhoto = $request->file('photo')->getClientOriginalName();
             $request->file('photo')->move(public_path() . '/images/profilePhoto', $request->file('photo')->getClientOriginalName());
@@ -73,7 +88,6 @@ class User extends Authenticatable
                 "photo" => $userPhoto,
                 "name" => $request->name,
                 "surname" => $request->surname,
-                "nickname" => $request->nackname,
                 "city" => $request->city,
                 "country" => $request->country,
                 "age" => $request->age,
@@ -87,7 +101,6 @@ class User extends Authenticatable
             [
                 "name" => $request->name,
                 "surname" => $request->surname,
-                "nickname" => $request->nackname,
                 "city" => $request->city,
                 "country" => $request->country,
                 "age" => $request->age,
@@ -95,7 +108,6 @@ class User extends Authenticatable
                 "telephone" => $request->telephone,
             ];
         }
-
         return $this->find(Auth::user()->id)->update($user_data);
     }
 

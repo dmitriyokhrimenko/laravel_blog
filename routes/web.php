@@ -69,7 +69,7 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLocale()], function()
 
       Route::post('/post', 'PostController@store')->name('post.store');
 
-      Route::get('/post/{id}/edit', 'PostController@edit')->name('edit.post');
+      Route::get('/post/edit/{id}', 'PostController@edit')->name('edit.post');
 
       Route::put('/post/update', 'PostController@update')->name('update.post');
 
@@ -113,7 +113,7 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLocale()], function()
 
           Route::get('/', 'PostController@index')->name('home');
 
-          Route::get('/post/{id}', 'PostController@single_post')->name('single.post');
+          Route::get('post/{id}', 'PostController@single_post')->name('single.post');
 
           Route::get('/archive/{year}/{month}', 'PostController@archive')->name('archive');
 

@@ -75,10 +75,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        Mail::send('emails.welcome', array('data' => $data), function($message) use ($data)
+        {
+            $message->from('support@okhrimenko.online', 'Просто блог!');
+            $message->to($data['email'], $data['name'])->subject('Добро пожаловать!!!');
+        });
+        return $user;
+
     }
 }

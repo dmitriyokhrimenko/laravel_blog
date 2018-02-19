@@ -21,6 +21,7 @@
     <script src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('/js/toggle-menu.js')}}"></script>
     <script src="{{asset('/js/scroll-top.js')}}"></script>
+    <script src="{{asset('/js/successful-actions.js')}}"></script>
     @if(Route::currentRouteName() == 'post.create')
         <script src='{{asset('/js/tinymce/js/tinymce/tinymce.min.js')}}'></script>
         <script src='{{asset('/js/tinymce-config.js')}}'></script>
@@ -31,6 +32,9 @@
 
 <body>
     @include('layouts.parts.nav')
+
+    <!--Pop up messages-->
+    @include('layouts.parts.successfulActions')
 
     @include('layouts.parts.header')
     <section class="main">

@@ -23,7 +23,7 @@ class ComposerServiceProvider extends ServiceProvider
            '*',
            'App\Http\ViewComposers\PostComposer'
        );
-       view()->composer('layouts.parts.sidebar', function($view){
+       view()->composer('*', function($view){
           $view->with('archive', ArchiveRepository::getData());
        });
     }

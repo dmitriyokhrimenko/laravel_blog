@@ -1,0 +1,55 @@
+html
+{
+    height: 100%;
+}
+body.admin
+{
+    display: block;
+    height: 100%;
+}
+
+.admin-login-form
+{
+    min-height: calc(100% - 224px - 7.5rem);
+    background: #272c33;
+}
+
+.back-to-site
+{
+    background: #001E71;
+    border-radius: 5px;
+    position: absolute;
+    left: 2rem;
+    top: 5rem;
+    color: #fff;
+}
+.back-top
+{
+    display: none;
+}
+@media screen and (max-width: 1000px){
+  .blog-header-logo-admin
+  {
+      max-width: 50%;
+  }
+  .blog-header-admin.text-center
+  {
+      text-align: right !important;
+  }
+  .back-to-site
+  {
+      top: 3rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .back-to-site
+  {
+      top: 2rem;
+  }
+}
+@media screen and (max-width: 580px){
+  .back-to-site
+  {
+      top: 1.5rem;
+  }
+}

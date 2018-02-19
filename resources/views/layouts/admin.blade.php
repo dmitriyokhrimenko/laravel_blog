@@ -18,7 +18,6 @@
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
     <link href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <script src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('/js/scroll-top.js')}}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
     <link rel="stylesheet" href="{{asset('/adminpart/assets/css/normalize.css')}}">
@@ -30,7 +29,7 @@
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="{{asset('/adminpart/assets/scss/style.css')}}">
     @if(Route::currentRouteName() === 'admin.login')
-      <link rel="stylesheet" href="{{asset('/adminpart/assets/scss/login.css')}}">
+      <link rel="stylesheet" href="{{asset('/css/login.css')}}">
     @endif
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>

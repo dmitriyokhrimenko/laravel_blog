@@ -23,6 +23,7 @@
     <script src="{{asset('/js/scroll-top.js')}}"></script>
     <script src="{{asset('/js/ajax/delete-photo.js')}}"></script>
     <script src="{{asset('/js/successful-actions.js')}}"></script>
+    <script src="{{asset('/js/delete_group.js')}}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     @if(Route::currentRouteName() == 'post.create' || Route::currentRouteName() == 'edit.post')
         <script src='{{asset('/js/tinymce/js/tinymce/tinymce.min.js')}}'></script>
@@ -44,6 +45,9 @@
 
             <div class="container">
                 <div class="row">
+
+                        <!--Pop up messages-->
+                        @include('layouts.parts.successfulActions')
 
                         @yield('content')
 

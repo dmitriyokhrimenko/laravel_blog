@@ -92,7 +92,7 @@
              </div>
             </div>
           </div>
-        </div>
+        </div> <!--Delete profile modal window end-->
 
 
     </div><!-- /.blog-main -->

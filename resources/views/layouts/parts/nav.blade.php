@@ -26,7 +26,20 @@
                 <li><a class="nav-link" href="{{route('register')}}">@lang('nav.Register')</a></li>
                 <li><a class="nav-link" href="{{route('login')}}">@lang('nav.Login')</a></li>
             @endif
-
+                <li class="archive-dropdown">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @lang('sidebar.Archive')
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          @if($archive->count() > 0)
+                              @foreach($archive as $one)
+                                <a href="{{route('archive', ['month' => $one->month, 'year' => $one->year])}}" class="dropdown-item">@lang("sidebar.$one->month") {{$one->year}} ({{$one->posts}})</a>
+                              @endforeach
+                          @endif
+                        </div>
+                    </div>
+                </li>
         </ul>
 
         <!--Mobile menu-->
@@ -50,6 +63,20 @@
                 <li><a class="nav-link" href="{{route('register')}}">@lang('nav.Register')</a></li>
                 <li><a class="nav-link" href="{{route('login')}}">@lang('nav.Login')</a></li>
             @endif
+            <li>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @lang('sidebar.Archive')
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      @if($archive->count() > 0)
+                          @foreach($archive as $one)
+                            <a href="{{route('archive', ['month' => $one->month, 'year' => $one->year])}}" class="dropdown-item">@lang("sidebar.$one->month") {{$one->year}} ({{$one->posts}})</a>
+                          @endforeach
+                      @endif
+                    </div>
+                </div>
+            </li>
         </ul>
 
 
